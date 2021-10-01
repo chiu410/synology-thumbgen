@@ -13,7 +13,7 @@ from multiprocessing import Value
 class State(object):
     def __init__(self):
         self.counter = Value('i', 0)
-        self.start_ticks = Value('d', time.process_time())
+        self.start_ticks = Value('d', time.perf_counter())
 
     def increment(self, n=1):
         with self.counter.get_lock():
@@ -41,7 +41,8 @@ def main():
 
     cores = cpu_count()
     with Pool(processes=cores, initializer=init, initargs=(state, )) as pool:
-        pool.map(process_file, files)
+        for i in pool.imap_unordered(process_file, files, chunksize=10):
+            pass
 
     print("{0} files processed in total.".format(state.value))
 
