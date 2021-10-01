@@ -5,6 +5,7 @@ import argparse
 import errno
 import time
 from PIL import Image
+from multiprocessing import cpu_count
 from multiprocessing import Pool
 from multiprocessing import Value
 
@@ -38,7 +39,8 @@ def main():
 
     files = find_files(args.directory)
 
-    with Pool(processes=4, initializer=init, initargs=(state, )) as pool:
+    cores = cpu_count()
+    with Pool(processes=cores, initializer=init, initargs=(state, )) as pool:
         pool.map(process_file, files)
 
     print("{0} files processed in total.".format(state.value))
@@ -55,6 +57,7 @@ def parse_args():
 
 
 def find_files(dir):
+    # Image extensions to look for when creating the thumbnails
     valid_exts = ('jpeg', 'jpg', 'bmp', 'gif')
     valid_exts_re = "|".join(
         map((lambda ext: ".*\\.{0}$".format(ext)), valid_exts))
