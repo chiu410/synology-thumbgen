@@ -6,6 +6,7 @@ import errno
 import logging
 import time
 from PIL import Image
+from PIL import ImageFile
 from multiprocessing import cpu_count
 from multiprocessing import Pool
 from multiprocessing import Value
@@ -32,6 +33,7 @@ class State(object):
 def init(args):
     global state
     state = args
+    ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 def main():
