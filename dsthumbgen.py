@@ -113,9 +113,9 @@ def create_thumbnails(source_path, dest_dir):
     im = Image.open(source_path)
 
     to_generate = (
-        ("SYNOPHOTO_THUMB_XL.jpg", 1280),
+        ("SYNOPHOTO_THUMB_XL.jpg", 1924),
         ("SYNOPHOTO_THUMB_B.jpg", 640),
-        ("SYNOPHOTO_THUMB_M.jpg", 320),
+        ("SYNOPHOTO_THUMB_M.jpg", 481),
         ("SYNOPHOTO_THUMB_PREVIEW.jpg", 160),
         ("SYNOPHOTO_THUMB_S.jpg", 120),
     )
