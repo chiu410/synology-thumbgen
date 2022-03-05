@@ -62,5 +62,5 @@ If you don't want to remove existing thumbnail directories,
 
 ```bash
 # Rename directories
-find . -depth -type d -name 'eaDir_tmp' -execdir mv -Tn {} @eaDir \;
+find . -depth -type d -name 'eaDir_tmp' -execdir mv -Tn '{}' @eaDir \;
 ```
