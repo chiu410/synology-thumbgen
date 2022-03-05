@@ -57,3 +57,10 @@ find . -depth -type d -name 'eaDir_tmp' -execdir rm -rf '{}' \;
 # Rename directories
 find . -depth -type d -name 'eaDir_tmp' -execdir mv '{}' @eaDir \;
 ```
+
+If you don't want to remove existing thumbnail directories,
+
+```bash
+# Rename directories
+find . -depth -type d -name 'eaDir_tmp' -execdir mv -Tn {} @eaDir \;
+```
