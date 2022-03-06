@@ -64,3 +64,11 @@ If you don't want to remove existing thumbnail directories,
 # Rename directories
 find . -depth -type d -name 'eaDir_tmp' -execdir mv -Tn '{}' @eaDir \;
 ```
+
+The above command will not rename `eaDir_tmp` if `@eaDir` already exists in the same directory e.g. when synology already created thumbnails for a few photos in that album. A better way is to use `rsync`.
+
+```
+# Update @eaDir with eaDir_tmp
+find . -depth -type d -name 'eaDir_tmp' -execdir rsync -r --ignore-existing '{}/' @eaDir \;
+# Delete eaDir_tmp
+find . -depth -type d -name 'eaDir_tmp' -execdir rm -rf '{}' \;
